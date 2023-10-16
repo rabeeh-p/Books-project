@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+{% if request.user.is_superuser %}
+
+    <form method="post" enctype="multipart/form-data" style="margin-left: 100px; ">
+        {% csrf_token %}
+
+        <label for=""> name</label>
+        <input type="text" name="name"><br>
+        <br>
+          
+
+        <label for=""> author</label>
+        <input type="text" name="author"><br>
+        <br>
+          
+
+        <label for=""> price</label>
+        <input type="text" name="price"><br>
+        <br>
+          <br>
+
+
+         &nbsp; <select class="browser-default custom-select" name="category">
+            <option selected>select the category</option>
+            {% for i in cate %}
+            <option value="{{i.id}}">{{i.name}}</option>
+            {% endfor %}
+            
+          </select>
+          <br>
+          
+          <br>
+
+
+        upload images:
+       <input type="file" accept="images/*" name="image">
+       <br>
+       <br>
+        
+
+        <input type="submit" value="button">
+
+        
+    </form>
+
+    {% else %}
+
+    
+    {% endif %}
+{% endblock %}

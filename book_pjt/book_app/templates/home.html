@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <style>
+        table {
+            border: none;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>My books store</h1>
+
+    <a href="{% url 'logout' %}">Logout</a>
+
+
+    <!-- <table class="table">
+        <thead>
+          <tr >
+            <th scope="col">#</th>
+            <th scope="col">image</th>
+            <th scope="col">name</th>
+            <th scope="col">author</th>
+            <th scope="col">price</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+            {% for b in book %}
+          <tr >
+            <th scope="row">{{forloop.counter}}</th>
+            <td><img src="{{b.cover.url}}" alt=""></td>
+            <td class="td">{{b.name}}</td>
+            <td class="td">{{b.author}}</td>
+            <td class="td">{{b.price}}</td>
+            
+          </tr>
+          
+          {% endfor %}
+          
+          
+        </tbody>
+      </table> -->
+
+
+
+
+      <!-- <table style="border-spacing: 30px;">
+        
+        <tbody><tr>
+          {% for b in book %}
+            <td>{{forloop.counter}}</td>
+            <td><img src="{{b.cover.url}}" width="40" height="60"></td>
+            <td><br><br>
+                <h4>{{b.name}} -{{b.author}}</h4>
+                {{ b.section}}<br>
+                <i><b>{{b.price}}</b></i>
+            </td>
+            <!-- <td><a href="/book/1/">Reviews</a></td> -->
+        <!-- </tr>
+        {% endfor %} -->
+    
+        
+    
+<!-- </tbody></table> --> -->
+
+<form method="get" style="margin: 35px">
+  <input type="text" name="search" placeholder="Search Books...">
+  
+  <select name="category">
+    
+    <option value="">select</option>
+    {% for c in category %}
+      <option value="{{c.id}}">{{c.name}}</option>
+      
+      {% endfor %}   
+      
+  </select>
+ 
+  <input type="submit" value="Search">
+</form>
+
+
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Name</th>
+      <th>author</th>
+      <th>Section</th>
+      <th>Price</th>
+      <th>Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in book %}
+    {% if b.is_published %}
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+              src="{{b.cover.url}}"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">{{b.name}}</p>
+            
+          </div>
+        </div>
+      </td>
+      <td>
+        <p class="fw-normal mb-1">{{b.author}}</p>
+        
+      </td>
+      <td>
+        <h3>{{b.section}}</h3>
+        <span class="badge badge-success rounded-pill d-inline">Active</span>
+      </td>
+      <td>Rs{{b.price}}</td>
+      <td>
+        <button  type="button" class="btn btn-link btn-sm btn-rounded">
+           <a href="{% url 'view-page' b.id %}"> view</a>
+        </button>
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+   
+    
+  </tbody>
+</table>
+</body>
+</html>

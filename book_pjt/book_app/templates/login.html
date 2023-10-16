@@ -1,0 +1,49 @@
+
+
+<style>
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .container h2 {
+      text-align: center;
+    }
+    .container label, .container input {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .container input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    .container input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+<div class="container">
+    <h2>Login Form</h2>
+    <form method="post">
+
+        {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text"  name="name" >
+
+      <label for="password">Password:</label>
+      <input type="password"  name="password" >
+
+      <input type="submit" value="Login">
+
+      <a href="{% url 'register' %}">Register</a>
+    </form>
+  </div>
+
+
+

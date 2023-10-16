@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+<table style="border-spacing: 30px; margin-left: 30px; ">
+    <tbody><tr>
+        <td></td>
+        <td><img src="{{book.cover.url}}" width="120" height="160"></td>
+        <td>
+            <h2 style="display: inline;">{{book.name}} - <h6 style="display: inline;">{{book.author}}</h6></h2>
+            <h3 style="font-family: 'Courier New', Courier, monospace;">{{book.section}}</h3>
+            <i><h5>{{book.price}}</h5></i>
+        </td>
+    </tr>
+</tbody></table>
+<br><br>
+
+<div style="margin-left: 40px;">
+    <form action="" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="content" class="" placeholder="Add coment">
+    </form>
+</div>
+
+{% for c in comment %}
+<div class="box">
+    
+    <h3 style="display: inline;">{{c.content}}</h3>
+    <h6 style="display: inline;">-{{c.user}}</h6>
+    <hr>
+</div>
+
+<!-- <table style="margin-left: 10px;  width: 200px; height: 200px; ">
+    <td><h3>{{c.content}}</h3></td> 
+    <td><h6>-{{c.user}}</h6></td> 
+    <h6></h6>
+</table> -->
+
+
+
+{% endfor %}
+
+
+{% endblock %}
